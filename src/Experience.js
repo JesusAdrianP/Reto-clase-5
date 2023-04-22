@@ -32,7 +32,7 @@ export default function Experience() {
     }
 
     function WallImage() {
-        const texture = new TextureLoader().load("/static/msn.jpg");
+        const [texture, setTexture] = useState(new TextureLoader().load("/static/msn.jpg"));
         const material = new THREE.MeshStandardMaterial({
             map: texture,
         });
@@ -40,12 +40,13 @@ export default function Experience() {
         const height = 4;
         const depth = 0.1;
 
+        const handleClick = () => {
+            const newTexture = new TextureLoader().load("/static/msn2.jpg");
+            setTexture(newTexture);
+        };
 
         return (
-            <Box args={[width, height, depth]} material={material
-            }>
-                
-            </Box>
+            <Box args={[width, height, depth]} material={material} onDoubleClick={handleClick}/>
         );
     }
 
